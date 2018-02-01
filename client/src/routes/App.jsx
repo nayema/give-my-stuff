@@ -1,20 +1,39 @@
 import React from 'react'
+import Paper from 'material-ui/Paper'
+import Grid from 'material-ui/Grid'
 import { withStyles } from 'material-ui/styles'
 
 import Header from './Header'
-import DonationDropBoxMap from './donation-drop-box-map/DonationDropBoxMap'
+import DonationDropBoxMap from './donation-drop-boxes-map/DonationDropBoxesMap'
 
 const styles = theme => ({
   root: {
     flexGrow: 1,
     marginTop: 30
+  },
+  container: {
+    justifyContent: 'center'
+  },
+  content: {
+    maxWidth: '1000px'
+  },
+  paper: {
+    padding: 16,
+    textAlign: 'center',
+    color: theme.palette.text.secondary
   }
 })
 
 const App = ({ classes }) => (
   <div className={classes.root}>
     <Header/>
-    <DonationDropBoxMap/>
+    <Grid container className={classes.container} spacing={24}>
+      <Grid item xs className={classes.content}>
+        <Paper className={classes.paper}>
+          <DonationDropBoxMap/>
+        </Paper>
+      </Grid>
+    </Grid>
   </div>
 )
 
