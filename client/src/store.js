@@ -4,7 +4,7 @@ import createSagaMiddleware from 'redux-saga'
 import createHistory from 'history/createBrowserHistory'
 
 import rootReducer from './modules/root-reducer'
-// import * as clothesTemperatureMappings from './modules/clothes-temperature-mappings'
+import * as donationDropBoxes from './modules/donation-drop-boxes'
 
 const sagaMiddleware = createSagaMiddleware()
 export const history = createHistory()
@@ -35,6 +35,6 @@ const store = createStore(
   composedEnhancers
 )
 
-// sagaMiddleware.run(clothesTemperatureMappings.sagas.loadAll)
+sagaMiddleware.run(donationDropBoxes.sagas.loadAll)
 
 export default store

@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux'
 import { routerReducer } from 'react-router-redux'
 
-// import * as clothesTemperatureMappings from './clothes-temperature-mappings'
+import * as donationDropBoxes from './donation-drop-boxes'
 
 export default combineReducers({
-  routing: routerReducer
-  // clothesTemperatureMappings: clothesTemperatureMappings.reducer
+  routing: routerReducer,
+  donationDropBoxes: donationDropBoxes.reducer
 })
