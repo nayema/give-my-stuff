@@ -1,7 +1,11 @@
 import * as actionTypes from './action-types'
 
 const initialState = {
-  donationDropBoxes: []
+  donationDropBoxes: [],
+  currentLocation: {
+    latitude: 43.7552436,
+    longitude: -79.2487037
+  }
 }
 
 function reducer (state = initialState, action) {
@@ -10,6 +14,12 @@ function reducer (state = initialState, action) {
       return {
         ...state,
         donationDropBoxes: action.payload.donationDropBoxes
+      }
+    }
+    case actionTypes.CURRENT_LOCATION_OBTAINED: {
+      return {
+        ...state,
+        currentLocation: action.payload.currentLocation
       }
     }
     default:

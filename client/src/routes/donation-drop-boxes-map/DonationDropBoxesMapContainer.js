@@ -1,17 +1,10 @@
 import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
 
 import DonationDropBoxesMap from './DonationDropBoxesMap'
 
-function mapStateToProps (state) {
-  return {
-    donationDropBoxes: state.donationDropBoxes.donationDropBoxes
-  }
-}
+const mapStateToProps = (state) => ({
+  donationDropBoxes: state.donationDropBoxes.donationDropBoxes,
+  currentLocation: state.donationDropBoxes.currentLocation
+})
 
-function mapDispatchToProps (dispatch) {
-  return bindActionCreators({
-  }, dispatch)
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(DonationDropBoxesMap)
+export default connect(mapStateToProps)(DonationDropBoxesMap)

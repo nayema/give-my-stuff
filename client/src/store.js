@@ -36,5 +36,6 @@ const store = createStore(
 )
 
 sagaMiddleware.run(donationDropBoxes.sagas.loadAll)
+sagaMiddleware.run(donationDropBoxes.sagas.obtainCurrentLocation)
 
 export default store

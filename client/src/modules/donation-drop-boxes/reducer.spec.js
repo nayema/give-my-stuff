@@ -8,6 +8,7 @@ describe('reducer', () => {
     const nextState = reducer(undefined, initialAction)
 
     expect(nextState).toHaveProperty('donationDropBoxes', [])
+    expect(nextState).toHaveProperty('currentLocation', { latitude: 43.7552436, longitude: -79.2487037 })
   })
 
   it('loads all donation drop boxes', () => {
@@ -21,5 +22,14 @@ describe('reducer', () => {
       'donationDropBoxes',
       [{ id: 1, organizationName: 'Some Organization Name', latitude: 1.000000, longitude: -1.000000 }]
     )
+  })
+
+  it('obtains current location', () => {
+    const currentLocation = { latitude: 43.7552436, longitude: -79.2487037 }
+    const currentLocationObtainedAction = actionCreators.currentLocationObtained(currentLocation)
+
+    const nextState = reducer(undefined, currentLocationObtainedAction)
+
+    expect(nextState).toHaveProperty('currentLocation', { latitude: 43.7552436, longitude: -79.2487037 })
   })
 })

@@ -6,3 +6,10 @@ export const loadAllSucceeded = (donationDropBoxes) => ({
     donationDropBoxes
   }
 })
+
+export const currentLocationObtained = (currentLocation) => ({
+  type: actionTypes.CURRENT_LOCATION_OBTAINED,
+  payload: {
+    currentLocation
+  }
+})
