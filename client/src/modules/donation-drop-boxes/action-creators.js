@@ -13,3 +13,11 @@ export const currentLocationObtained = (currentLocation) => ({
     currentLocation
   }
 })
+
+export const openInfoWindow = () => ({
+  type: actionTypes.OPEN_INFO_WINDOW,
+})
+
+export const closeInfoWindow = () => ({
+  type: actionTypes.CLOSE_INFO_WINDOW,
+})

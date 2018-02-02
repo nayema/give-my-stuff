@@ -9,6 +9,7 @@ describe('reducer', () => {
 
     expect(nextState).toHaveProperty('donationDropBoxes', [])
     expect(nextState).toHaveProperty('currentLocation', { latitude: 43.7552436, longitude: -79.2487037 })
+    expect(nextState).toHaveProperty('infoWindowIsOpen', false)
   })
 
   it('loads all donation drop boxes', () => {
@@ -31,5 +32,21 @@ describe('reducer', () => {
     const nextState = reducer(undefined, currentLocationObtainedAction)
 
     expect(nextState).toHaveProperty('currentLocation', { latitude: 43.7552436, longitude: -79.2487037 })
+  })
+
+  it('opens info window', () => {
+    const openInfoWindowAction = actionCreators.openInfoWindow()
+
+    const nextState = reducer(undefined, openInfoWindowAction)
+
+    expect(nextState).toHaveProperty('infoWindowIsOpen', true)
+  })
+
+  it('closes info window', () => {
+    const openInfoWindowAction = actionCreators.closeInfoWindow()
+
+    const nextState = reducer(undefined, openInfoWindowAction)
+
+    expect(nextState).toHaveProperty('infoWindowIsOpen', false)
   })
 })
