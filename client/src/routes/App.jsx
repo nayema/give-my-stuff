@@ -4,7 +4,7 @@ import Grid from 'material-ui/Grid'
 import { withStyles } from 'material-ui/styles'
 
 import Header from './Header'
-import DonationDropBoxMap from './donation-drop-boxes-map/DonationDropBoxesMap'
+import DonationDropBoxesMap from './donation-drop-boxes-map/DonationDropBoxesMapContainer'
 
 const styles = theme => ({
   root: {
@@ -30,7 +30,7 @@ const App = ({ classes }) => (
     <Grid container className={classes.container} spacing={24}>
       <Grid item xs className={classes.content}>
         <Paper className={classes.paper}>
-          <DonationDropBoxMap/>
+          <DonationDropBoxesMap/>
         </Paper>
       </Grid>
     </Grid>

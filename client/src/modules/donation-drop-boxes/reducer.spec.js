@@ -12,14 +12,14 @@ describe('reducer', () => {
 
   it('loads all donation drop boxes', () => {
     const loadAllSucceededAction = actionCreators.loadAllSucceeded(
-      [{ id: 1, organizationName: 'Some Organization Name', latitude: 1.00, longitude: -1.00 }]
+      [{ id: 1, organizationName: 'Some Organization Name', latitude: 1.000000, longitude: -1.000000 }]
     )
 
     const nextState = reducer(undefined, loadAllSucceededAction)
 
     expect(nextState).toHaveProperty(
       'donationDropBoxes',
-      [{ id: 1, organizationName: 'Some Organization Name', latitude: 1.00, longitude: -1.00 }]
+      [{ id: 1, organizationName: 'Some Organization Name', latitude: 1.000000, longitude: -1.000000 }]
     )
   })
 })
