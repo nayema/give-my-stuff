@@ -11,7 +11,7 @@ describe('donation drop boxes route', () => {
   it('gets all the donation drop boxes', async () => {
     await db.query(
       'INSERT INTO donation_drop_boxes (organization_name, latitude, longitude)' +
-      'VALUES (\'Some Organization\', 1.00, -1.00)'
+      'VALUES (\'Some Organization\', 1.23456789, -1.23456789)'
     )
 
     const response = await request(app)
@@ -20,7 +20,7 @@ describe('donation drop boxes route', () => {
     expect(response.statusCode).toBe(200)
     const donationDropBoxes = response.body
     expect(donationDropBoxes[0]).toHaveProperty('organization_name', 'Some Organization')
-    expect(donationDropBoxes[0]).toHaveProperty('latitude', '1.00')
-    expect(donationDropBoxes[0]).toHaveProperty('longitude', '-1.00')
+    expect(donationDropBoxes[0]).toHaveProperty('latitude', 1.23456789)
+    expect(donationDropBoxes[0]).toHaveProperty('longitude', -1.23456789)
   })
 })
