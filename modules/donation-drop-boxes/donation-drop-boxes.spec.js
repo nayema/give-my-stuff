@@ -1,7 +1,7 @@
 import request from 'supertest'
 
-import app from '../app'
-import db from '../db'
+import app from '../../app'
+import db from '../../db/index'
 
 describe('donation drop boxes route', () => {
   beforeEach(async () => {
