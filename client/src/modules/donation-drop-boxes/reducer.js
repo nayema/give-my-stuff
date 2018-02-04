@@ -1,43 +1,30 @@
+import { handleActions } from 'redux-actions'
+
 import * as actionTypes from './action-types'
 
 const initialState = {
-  donationDropBoxes: [],
   currentLocation: {
     latitude: 43.7552436,
     longitude: -79.2487037
   },
-  infoWindowIsOpen: false
+  donationDropBoxes: [],
+  isLoading: false
 }
 
-function reducer (state = initialState, action) {
-  switch (action.type) {
-    case actionTypes.LOAD_ALL_SUCCEEDED: {
-      return {
-        ...state,
-        donationDropBoxes: action.payload.donationDropBoxes
-      }
-    }
-    case actionTypes.CURRENT_LOCATION_OBTAINED: {
-      return {
-        ...state,
-        currentLocation: action.payload.currentLocation
-      }
-    }
-    case actionTypes.OPEN_INFO_WINDOW: {
-      return {
-        ...state,
-        infoWindowIsOpen: true
-      }
-    }
-    case actionTypes.CLOSE_INFO_WINDOW: {
-      return {
-        ...state,
-        infoWindowIsOpen: false
-      }
-    }
-    default:
-      return state
-  }
-}
+const reducer = handleActions({
+  [actionTypes.CURRENT_LOCATION_OBTAINED]: (state, action) => ({
+    ...state,
+    currentLocation: action.payload
+  }),
+  [actionTypes.LOAD_ALL_STARTED]: (state) => ({
+    ...state,
+    isLoading: true
+  }),
+  [actionTypes.LOAD_ALL_SUCCEEDED]: (state, action) => ({
+    ...state,
+    donationDropBoxes: action.payload,
+    isLoading: false
+  })
+}, initialState)
 
 export default reducer
