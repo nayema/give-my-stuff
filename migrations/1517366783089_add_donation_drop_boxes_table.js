@@ -4,6 +4,7 @@ exports.up = (pgm) => {
     {
       'id': { type: 'serial', primaryKey: true },
       'organization_name': 'text',
+      'address': 'text',
       'latitude': { type: 'double precision' },
       'longitude': { type: 'double precision' }
     }

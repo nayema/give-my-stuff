@@ -1,11 +1,5 @@
 import { camelizeKeys } from 'humps'
 
-export async function loadAll () {
-  const response = await fetch('/donation-drop-boxes')
-  const jsonResponse = await response.json()
-  return camelizeKeys(jsonResponse)
-}
-
 function getPosition (options) {
   return new Promise((resolve, reject) => {
     navigator.geolocation.getCurrentPosition(resolve, reject, options)
@@ -20,4 +14,10 @@ export async function getCurrentLocation () {
       longitude: position.coords.longitude
     }
   }
+}
+
+export async function loadAll () {
+  const response = await fetch('/donation-drop-boxes')
+  const jsonResponse = await response.json()
+  return camelizeKeys(jsonResponse)
 }

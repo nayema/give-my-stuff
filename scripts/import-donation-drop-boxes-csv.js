@@ -30,8 +30,8 @@ fs.createReadStream(process.argv[2])
         console.log('Geocoded and imported: %s, %s, %s, %s', organizationName, address, lat, lng)
 
         db.query(
-          'INSERT INTO donation_drop_boxes (organization_name, latitude, longitude) VALUES ($1, $2, $3)',
-          [organizationName, lat, lng]
+          'INSERT INTO donation_drop_boxes (organization_name, address, latitude, longitude) VALUES ($1, $2, $3, $4)',
+          [organizationName, address, lat, lng]
         )
       } catch (e) {
         console.log('Error: ' + e.message)
