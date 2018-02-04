@@ -24,6 +24,16 @@ const reducer = handleActions({
     ...state,
     donationDropBoxes: action.payload,
     isLoading: false
+  }),
+  [actionTypes.OPEN_INFO_WINDOW]: (state, action) => ({
+    ...state,
+    donationDropBoxes: state.donationDropBoxes.map(donationDropBox =>
+      donationDropBox.id === action.payload.id ? { ...donationDropBox, isOpen: true } : donationDropBox)
+  }),
+  [actionTypes.CLOSE_INFO_WINDOW]: (state, action) => ({
+    ...state,
+    donationDropBoxes: state.donationDropBoxes.map(donationDropBox =>
+      donationDropBox.id === action.payload.id ? { ...donationDropBox, isOpen: false } : donationDropBox)
   })
 }, initialState)
 
