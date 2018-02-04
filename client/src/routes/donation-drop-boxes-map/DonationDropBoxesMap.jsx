@@ -1,4 +1,6 @@
 import React from 'react'
+import { CircularProgress } from 'material-ui/Progress'
+import purple from 'material-ui/colors/purple'
 import { withScriptjs, withGoogleMap, GoogleMap, Marker } from 'react-google-maps'
 import { withStyles } from 'material-ui/styles'
 
@@ -7,10 +9,19 @@ const styles = theme => ({
     marginTop: theme.spacing.unit * 2,
     overflowX: 'auto',
     width: '100%'
+  },
+  progress: {
+    margin: `0 ${theme.spacing.unit * 2}px`
   }
 })
 
-const MapWithMarkers = withScriptjs(withGoogleMap(({ currentLocation, donationDropBoxes  }) =>
+const Loader = ({ classes }) => (
+  <div>
+    <CircularProgress className={classes.progress} style={{ color: purple[500] }} thickness={7}/>
+  </div>
+)
+
+const MapWithMarkers = withScriptjs(withGoogleMap(({ currentLocation, donationDropBoxes }) =>
   <GoogleMap
     defaultZoom={10}
     center={{ lat: currentLocation.latitude, lng: currentLocation.longitude }}
@@ -24,8 +35,9 @@ const MapWithMarkers = withScriptjs(withGoogleMap(({ currentLocation, donationDr
   </GoogleMap>
 ))
 
-const DonationDropBoxesMap = ({ classes, donationDropBoxes, currentLocation }) => (
+const DonationDropBoxesMap = ({ classes, isLoading, currentLocation, donationDropBoxes }) => (
   <div className={classes.root}>
+    {isLoading && <Loader isLoading={isLoading}/>}
     <MapWithMarkers
       currentLocation={currentLocation}
       donationDropBoxes={donationDropBoxes}
