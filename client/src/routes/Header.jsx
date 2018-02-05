@@ -9,7 +9,7 @@ const styles = () => ({
     textAlign: 'center'
   },
   font: {
-    fontFamily: 'Sedgwick Ave Display'
+    fontFamily: 'Indie Flower'
   }
 })
 
