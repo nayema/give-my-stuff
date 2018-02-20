@@ -18,7 +18,7 @@ fs.createReadStream(process.argv[2])
   .pipe(csv())
   .on('data', (data) => rows.push(data))
   .on('end', async () => {
-    for (let row of rows) {
+    for (const row of rows) {
       const organizationName = row['Operating Name']
       const address = `${row['Permit Address Street No.']} ${row['Permit Address Street Name']}, ${row['Permit Address Postal Code']}`
 
