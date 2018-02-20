@@ -1,27 +1,31 @@
 import request from 'supertest'
 
 import app from '../../app'
-import db from '../../db/index'
+import DonationDropBox from './DonationDropBox'
 
-describe('donation drop boxes route', () => {
+describe('donation drop boxes', () => {
   beforeEach(async () => {
-    await db.query('TRUNCATE donation_drop_boxes')
+    await DonationDropBox.query().delete()
   })
 
   it('gets all the donation drop boxes', async () => {
-    await db.query(
-      'INSERT INTO donation_drop_boxes (organization_name, address, latitude, longitude) VALUES ($1, $2, $3, $4)',
-      ['Some Organization','Some Address', 1.23456789, -1.23456789]
-    )
+    await DonationDropBox.query().insert({
+      'organization_name': 'Some Organization',
+      'address': 'Some Address',
+      'latitude': 1.23456789,
+      'longitude': -1.23456789
+    })
 
     const response = await request(app)
       .get('/donation-drop-boxes')
 
     expect(response.statusCode).toBe(200)
     const donationDropBoxes = response.body
-    expect(donationDropBoxes[0]).toHaveProperty('organization_name', 'Some Organization')
-    expect(donationDropBoxes[0]).toHaveProperty('address', 'Some Address')
-    expect(donationDropBoxes[0]).toHaveProperty('latitude', 1.23456789)
-    expect(donationDropBoxes[0]).toHaveProperty('longitude', -1.23456789)
+    expect(donationDropBoxes[0]).toEqual(expect.objectContaining({
+      'organization_name': 'Some Organization',
+      'address': 'Some Address',
+      'latitude': 1.23456789,
+      'longitude': -1.23456789
+    }))
   })
 })

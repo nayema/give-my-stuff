@@ -77,6 +77,6 @@ typings/
 
 # dotenv environment variables file
 .env
-.envrc
+.env.production
 
 tmp/

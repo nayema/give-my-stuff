@@ -1,0 +1,7 @@
+{
+  "db": {
+    "connection": {
+      "database": "give_my_stuff_production"
+    }
+  }
+}

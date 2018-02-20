@@ -3,38 +3,46 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "PORT=3001 nodemon ./bin/www",
-    "test": "node_modules/.bin/jest --watch"
+    "start": "node ./bin/www",
+    "dev": "PORT=3001 nodemon ./bin/www",
+    "test": "node_modules/.bin/jest --watch",
+    "foreman-dev": "nf start --procfile Procfile.development",
+    "migrate-all-rollback": "NODE_ENV=test knex migrate:rollback && knex migrate:rollback",
+    "migrate-all-latest": "NODE_ENV=test knex migrate:latest && knex migrate:latest",
+    "migrate-all-redo": "npm run migrate-all-rollback && npm run migrate-all-latest",
+    "heroku-postbuild": "node_modules/.bin/knex migrate:latest && cd client/ && npm install && npm run build",
+    "heroku-update-prod-env-vars": "sed 's/#[^(\"|'')]*$//;s/^#.*$//' .env.production | xargs heroku config:set --app=shnoodo"
   },
   "dependencies": {
     "axios": "^0.17.1",
     "body-parser": "~1.18.2",
     "config": "^1.29.2",
     "cookie-parser": "~1.4.3",
-    "csv-parser": "^1.12.0",
     "debug": "~2.6.9",
     "express": "~4.15.5",
-    "jade": "~1.11.0",
+    "knex": "^0.14.2",
     "morgan": "~1.9.0",
+    "objection": "^0.9.4",
     "pg": "^7.4.1",
     "serve-favicon": "~2.4.5"
   },
   "devDependencies": {
     "@types/jest": "^22.0.1",
     "@types/supertest": "^2.0.4",
-    "babel-eslint": "^8.2.1",
+    "babel-eslint": "^7.2.3",
     "babel-preset-env": "^1.6.1",
-    "csv-parse": "^2.0.0",
+    "csv-parser": "^1.12.0",
     "eslint": "^4.16.0",
     "eslint-config-react-app": "^2.1.0",
     "eslint-config-standard": "^11.0.0-beta.0",
     "eslint-plugin-flowtype": "^2.41.0",
     "eslint-plugin-import": "^2.8.0",
-    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-jsx-a11y": "^5.1.1",
     "eslint-plugin-node": "^5.2.1",
     "eslint-plugin-promise": "^3.6.0",
     "eslint-plugin-react": "^7.5.1",
     "eslint-plugin-standard": "^3.0.1",
+    "foreman": "^2.0.0",
     "jest": "^22.1.4",
     "node-pg-migrate": "^2.17.0",
     "nodemon": "^1.14.11",
@@ -44,7 +52,14 @@
   },
   "babel": {
     "presets": [
-      "env"
+      [
+        "env",
+        {
+          "targets": {
+            "node": "current"
+          }
+        }
+      ]
     ]
   },
   "eslintConfig": {
@@ -64,5 +79,9 @@
       "<rootDir>/client/",
       "<rootDir>/tmp/"
     ]
-  }
+  },
+  "cacheDirectories": [
+    "node_modules",
+    "client/node_modules"
+  ]
 }

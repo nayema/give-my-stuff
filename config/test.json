@@ -1,5 +1,7 @@
 {
   "db": {
-    "name": "give_my_stuff_test"
+    "connection": {
+      "database": "give_my_stuff_test"
+    }
   }
 }
