@@ -42,7 +42,7 @@ const DonationDropBoxMarker = ({ donationDropBoxes, openInfoWindow, closeInfoWin
 
 const MapWithMarkers = withScriptjs(withGoogleMap(({ currentLocation, donationDropBoxes, openInfoWindow, closeInfoWindow }) =>
   <GoogleMap
-    defaultZoom={10}
+    defaultZoom={15}
     center={{ lat: currentLocation.latitude, lng: currentLocation.longitude }}
   >
     <DonationDropBoxMarker
