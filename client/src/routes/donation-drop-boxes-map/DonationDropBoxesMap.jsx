@@ -61,7 +61,7 @@ const DonationDropBoxesMap = ({ classes, isLoading, currentLocation, donationDro
       donationDropBoxes={donationDropBoxes}
       openInfoWindow={openInfoWindow}
       closeInfoWindow={closeInfoWindow}
-      googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyBNBeXv7O6nMJURdEgGyLgdHQcXjv55G-4&v=3.exp&libraries=geometry,drawing,places"
+      googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}&v=3.exp&libraries=geometry,drawing,places`}
       loadingElement={<div style={{ height: `100%` }}/>}
       containerElement={<div style={{ height: `400px` }}/>}
       mapElement={<div style={{ height: `100%` }}/>}

@@ -21,9 +21,8 @@ fs.createReadStream(process.argv[2])
     for (const row of rows) {
       const organizationName = row['Operating Name']
       const address = `${row['Permit Address Street No.']} ${row['Permit Address Street Name']}, ${row['Permit Address Postal Code']}`
-      const key = `AIzaSyBTVrTJIBbEaI-H5G9Ar6X7I0O4qmC28AA`
 
-      const geocodeUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${key}`
+      const geocodeUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${process.env.GOOGLE_MAPS_API_KEY}`
 
       try {
         const response = await axios.get(geocodeUrl)
@@ -41,4 +40,6 @@ fs.createReadStream(process.argv[2])
       }
       sleep(100)
     }
+
+    console.log('Finished geocoding and importing.')
   })
