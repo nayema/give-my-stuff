@@ -19,8 +19,8 @@ fs.createReadStream(process.argv[2])
   .on('data', (data) => rows.push(data))
   .on('end', async () => {
     for (const row of rows) {
-      const organizationName = row['Operating Name']
-      const address = `${row['Permit Address Street No.']} ${row['Permit Address Street Name']}, ${row['Permit Address Postal Code']}`
+      const organizationName = row['Client Name']
+      const address = `${row['Licence Address Line 1']} ${row['Licence Address Line 2']}, ${row['Licence Address Line 3']}`
 
       const geocodeUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${process.env.GOOGLE_MAPS_API_KEY}`
 
