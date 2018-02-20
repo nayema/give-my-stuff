@@ -42,4 +42,5 @@ fs.createReadStream(process.argv[2])
     }
 
     console.log('Finished geocoding and importing.')
+    process.exit()
   })
