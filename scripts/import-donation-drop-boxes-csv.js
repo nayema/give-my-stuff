@@ -20,12 +20,13 @@ fs.createReadStream(process.argv[2])
   .on('end', async () => {
     for (const row of rows) {
       const organizationName = row['Client Name']
-      const address = `${row['Licence Address Line 1']} ${row['Licence Address Line 2']}, ${row['Licence Address Line 3']}`
+      const postalCode = `${row['Licence Address Line 3']}`
 
-      const geocodeUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${process.env.GOOGLE_MAPS_API_KEY}`
+      const geocodeUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${postalCode}&key=${process.env.GOOGLE_MAPS_API_KEY}`
 
       try {
         const response = await axios.get(geocodeUrl)
+        const address = response.data.results[0]['formatted_address']
         const { lat, lng } = response.data.results[0]['geometry']['location']
         console.log('Geocoded and imported: %s, %s, %s, %s', organizationName, address, lat, lng)
 
