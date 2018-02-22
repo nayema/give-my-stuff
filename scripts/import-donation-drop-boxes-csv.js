@@ -10,7 +10,7 @@ function sleep (millis) {
   }
 }
 
-DonationDropBox.query().truncate()
+DonationDropBox.query().delete()
 console.log('All previous donation drop boxes deleted successfully.')
 
 const rows = []
@@ -20,13 +20,12 @@ fs.createReadStream(process.argv[2])
   .on('end', async () => {
     for (const row of rows) {
       const organizationName = row['Licensee']
-      const postalCode = row['Postal Code']
+      const address = `${row['Street#']} ${row['Street Name']}, ${row['City']}`
 
-      const geocodeUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${postalCode}&key=${process.env.GOOGLE_MAPS_API_KEY}`
+      const geocodeUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${process.env.GOOGLE_MAPS_API_KEY}`
 
       try {
         const response = await axios.get(geocodeUrl)
-        const address = `${row['Street#']} ${row['Street Name']}, ${row['City']}`
         const { lat, lng } = response.data.results[0]['geometry']['location']
         console.log('Geocoded and imported: %s, %s, %s, %s', organizationName, address, lat, lng)
 
