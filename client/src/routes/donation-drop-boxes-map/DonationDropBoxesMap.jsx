@@ -34,6 +34,10 @@ const DonationDropBoxMarker = ({ donationDropBoxes, openInfoWindow, closeInfoWin
             <strong>{donationDropBox.organizationName}</strong>
             <br/>
             {donationDropBox.address}
+            <br/>
+            <a href={`https://www.google.com/maps/dir/?api=1&destination=${donationDropBox.address}`}>
+              Get Directions
+            </a>
           </div>
         </InfoWindow>}
       </Marker>
