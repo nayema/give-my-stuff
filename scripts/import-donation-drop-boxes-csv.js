@@ -10,14 +10,14 @@ function sleep (millis) {
   }
 }
 
-DonationDropBox.query().delete()
-console.log('All previous donation drop boxes deleted successfully.')
-
 const rows = []
 fs.createReadStream(process.argv[2])
   .pipe(csv())
   .on('data', (data) => rows.push(data))
   .on('end', async () => {
+    await DonationDropBox.query().delete()
+    console.log('All previous donation drop boxes deleted successfully.')
+
     for (const row of rows) {
       const organizationName = row['Licensee']
       const address = `${row['Street#']} ${row['Street Name']}, ${row['City']}`
