@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Donation Drop Boxes Map with markers 1`] = `
+<div
+  className="DonationDropBoxesMap-root-1"
+>
+  <div
+    style={
+      Object {
+        "height": "100%",
+      }
+    }
+  />
+</div>
+`;
