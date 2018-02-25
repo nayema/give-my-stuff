@@ -30,8 +30,7 @@ const App = ({ classes }) => (
     <Grid container className={classes.container} spacing={24}>
       <Grid item xs className={classes.content}>
         <Paper className={classes.paper}>
-          UNDER CONSTRUCTION
-          {/*<DonationDropBoxesMap/>*/}
+          <DonationDropBoxesMap/>
         </Paper>
       </Grid>
     </Grid>
