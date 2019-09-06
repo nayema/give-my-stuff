@@ -14,7 +14,7 @@
     "heroku-update-prod-env-vars": "sed 's/#[^(\"|'')]*$//;s/^#.*$//' .env.production | xargs heroku config:set --app=give-my-stuff"
   },
   "dependencies": {
-    "axios": "^0.17.1",
+    "axios": "^0.18.1",
     "body-parser": "~1.18.2",
     "config": "^1.29.2",
     "cookie-parser": "~1.4.4",
