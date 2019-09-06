@@ -14,7 +14,7 @@
     "heroku-update-prod-env-vars": "sed 's/#[^(\"|'')]*$//;s/^#.*$//' .env.production | xargs heroku config:set --app=give-my-stuff"
   },
   "dependencies": {
-    "axios": "^0.17.1",
+    "axios": "^0.18.1",
     "body-parser": "~1.18.2",
     "config": "^1.29.2",
     "cookie-parser": "~1.4.4",
@@ -45,7 +45,7 @@
     "foreman": "^2.0.0",
     "jest": "^22.1.4",
     "node-pg-migrate": "^2.17.0",
-    "nodemon": "^1.14.11",
+    "nodemon": "^1.19.2",
     "stylelint": "^8.4.0",
     "stylelint-config-standard": "^18.0.0",
     "supertest": "^4.0.2"
