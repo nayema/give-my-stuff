@@ -48,7 +48,7 @@
     "nodemon": "^1.14.11",
     "stylelint": "^8.4.0",
     "stylelint-config-standard": "^18.0.0",
-    "supertest": "^3.0.0"
+    "supertest": "^4.0.2"
   },
   "babel": {
     "presets": [
