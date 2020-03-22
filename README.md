@@ -19,6 +19,14 @@ Source:
 - Knex
 - Objection
 
+### Manual database update
+
+The command takes two arguments. This will run the script which takes the data from the csv file, gets the geo location using the google api and upload to heroku-database. This is fed to the google maps api upon loading the app.
+
+`node <node-script> <csv-file>`
+
+`node scripts/import-donation-drop-boxes-csv.js data/donation_drop_boxes.csv`
+
 ### For Developers
 
 Re-import geocoded donation drop boxes in production database by running the following command:
