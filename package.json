@@ -43,7 +43,7 @@
     "eslint-plugin-react": "^7.14.3",
     "eslint-plugin-standard": "^3.1.0",
     "foreman": "^3.0.1",
-    "jest": "^24.9.0",
+    "jest": "^25.1.0",
     "node-pg-migrate": "^4.2.3",
     "nodemon": "^1.19.2",
     "stylelint": "^8.4.0",
