@@ -3,6 +3,8 @@ const path = require('path')
 const logger = require('morgan')
 const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser')
+const graphqlHTTP = require('express-graphql');
+const graphQlBuilder = require('objection-graphql').builder;
 
 const app = express()
 
@@ -11,28 +13,24 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cookieParser())
 
-app.use('/', require('./modules/donation-drop-boxes'))
+const DonationDropBox = require('./modules/donation-drop-boxes/DonationDropBox')
 
-const router = express.Router()
+// This is all you need to do to generate the schema.
+const graphQlSchema = graphQlBuilder()
+  .model(DonationDropBox)
+  .build();
 
-app.use(express.static(path.join(__dirname, 'client/build')))
-router.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'client/build', 'index.html'))
-})
-app.use('/', router)
+// The root provides a resolver function for each API endpoint
+const root = {
+  box: () => {
+    return DonationDropBox.query();
+  },
+};
 
-app.use((req, res, next) => {
-  const err = new Error('Not Found')
-  err.status = 404
-  next(err)
-})
-
-app.use((err, req, res) => {
-  res.locals.message = err.message
-  res.locals.error = req.app.get('env') === 'development' ? err : {}
-
-  res.status(err.status || 500)
-  res.send(err)
-})
+app.use('/graphql', graphqlHTTP({
+  schema: graphQlSchema,
+  rootValue: root,
+  graphiql: true,
+}));
 
 module.exports = app
